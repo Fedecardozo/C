@@ -3,7 +3,8 @@
 
 int main(){
 	
-	
+	//Ejercicio 1
+	//1.Escribir un programa que defina un vector de números y calcule la suma de sus elementos.
 	int num,i=0,suma=0;
 	
 	printf("Ingrese la cantidad del vector: ");
