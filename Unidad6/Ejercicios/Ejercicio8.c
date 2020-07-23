@@ -17,35 +17,32 @@ int main(){
 	
 	for(i=0;i<3;i++){
 		
-		printf("\n");
-		
 		for(j=0;j<3;j++){
 			
-			por = mat1[i][j] * mat2[j][i]; 
+			por = mat1[r][j] * mat2[j][i]; 
 			sum = sum + por;
 			
-			printf("|%i|",mat2[j][i]);
+			if(j==2){
+				
+				printf("|%i|",sum);
+				sum = 0;
+			}
 	
+		}
+		//cuando i llegue a 2 que es su punto maximo lo reincio y a r le sumo 1. Hago un salto de linea 
+		// De esta forma lo reinicio 2 veces 
+		if(i == 2 && r<2){
+				r++;
+				i=-1;
+				printf("\n");
 		}
 		
 	}
-	printf("\nMat1: ");
-	for(i=0;i<3;i++){
 		
-		printf("\n");
-		
-		for(j=0;j<3;j++){
-			
-			por = mat1[i][j] * mat2[j][i]; 
-			sum = sum + por;
-			
-			printf("|%i|",mat1[i][j]);
 	
-		}
-		
-	}
+	/* Aca no me salio lo que quise hacer
 	
-	/*for(i=0;i<9;i++){
+	for(i=0;i<9;i++){
 		
 		for(j=0;j<3;j++){
 			
