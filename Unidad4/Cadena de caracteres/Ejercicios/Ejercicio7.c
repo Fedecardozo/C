@@ -78,10 +78,10 @@ int main(){
 		
 	}
 	
-	printf("Total de letras 'a': %i" ,a);
-	printf("Total de letras 'e': %i" ,e);
-	printf("Total de letras 'i': %i" ,i);
-	printf("Total de letras 'o': %i" ,o);
-	printf("Total de letras 'u': %i" ,u);
+	printf("\nTotal de letras 'a': %i" ,a);
+	printf("\nTotal de letras 'e': %i" ,e);
+	printf("\nTotal de letras 'i': %i" ,i);
+	printf("\nTotal de letras 'o': %i" ,o);
+	printf("\nTotal de letras 'u': %i" ,u);
 	
 }
