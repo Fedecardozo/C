@@ -9,6 +9,7 @@ int main(){
 	char cadena [20];
 	char *puntero;
 	int i,cont=0,tam;
+	int contA=0, contE=0,contI=0,contO=0,contU=0;
 		
 	printf("Ingrese una cadena de carecteres: ");
 //	scanf("%s", &puntero);
@@ -24,19 +25,24 @@ int main(){
 //	puts(cadena);
 	for(i=0; i<tam; i++){
 		
-		switch(puntero[i]){
+		switch(*puntero){
 			
-			case 'A': cont++; break;
-			case 'E': cont++; break;
-			case 'I': cont++; break;
-			case 'O': cont++; break;
-			case 'U': cont++; break;
+			case 'A': cont++; contA++; break;
+			case 'E': cont++; contE++; break;
+			case 'I': cont++; contI++; break;
+			case 'O': cont++; contO++; break;
+			case 'U': cont++; contU++; break;
 			
 		}
+		puntero++;
 		
 	}
 		
-	printf("\nHay %i vocales: ", cont);
-	
+	printf("\nContiene %i vocales: ", cont);
+	printf("\nCantidad A: %i",contA);
+	printf("\nCantidad E: %i",contE);
+	printf("\nCantidad I: %i",contI);
+	printf("\nCantidad O: %i",contO);
+	printf("\nCantidad U: %i",contU);
 	
 }
