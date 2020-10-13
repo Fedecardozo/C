@@ -1,29 +1,25 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 int main(){
 	
-	//profe este ejercicio lo resolvi de distinta forma al anteririor 
-	
-	//Pedir una cadena de caracteres (string) al usuario, e indicar cuántas veces aparece cada vocal en dicha cadena. Utilizar punteros
 	char cadena [20];
 	char *puntero;
 	int i,cont=0,tam;
 	int contA=0, contE=0,contI=0,contO=0,contU=0;
 		
-	printf("Ingrese una cadena de carecteres: ");
-//	scanf("%s", &puntero);
-	gets(cadena);
+	printf("Ingrese su nombre: ");
+	scanf("%s", &puntero);
+//	gets(cadena);
 	
-	puntero = cadena;
+//	puntero = cadena;
 	
 	tam = strlen(puntero);
 	
 	strupr(puntero);
 	
-//	printf("%i %s",tam,puntero);	
+	printf("%i %s",tam,puntero);	
 //	puts(cadena);
 	for(i=0; i<tam; i++){
 		
