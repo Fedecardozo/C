@@ -7,8 +7,9 @@
 Pedir datos al usuario para 3 alumnos, comprobar cuál de los 3 tiene el mejor promedio y posteriormente imprimir los datos del alumno.*/
 
 // Prototypo
-
+void pedirDatos();
 int mejorPromedio(float x[]);
+void mostrarDatos();
 
 struct notaEst{
 	
@@ -27,8 +28,14 @@ struct alumno{
 
 int main(){
 	
-	int i,j,indice;
-	float vecPromedio[TAM];
+	pedirDatos();
+	mostrarDatos();
+	
+}
+
+void pedirDatos(){
+	
+	int i,j;
 	
 	for(i=0; i<TAM; i++){
 		
@@ -52,16 +59,9 @@ int main(){
 		fflush(stdin);
 		
 		estudiante[i].promedio = acu/TAM;
-		vecPromedio[i] = estudiante[i].promedio;
 	
 	}
 	
-	
-	indice = mejorPromedio(vecPromedio);
-	
-	printf("El nombre del alumno es: %s", estudiante[indice].nombre);
-	printf("La edad del alumno es: %i", estudiante[indice].edad);
-	printf("El promedio del alumno es: %2.f", estudiante[indice].promedio);
 	
 }
 
@@ -93,5 +93,23 @@ int mejorPromedio(float x[]){
 	return indice;
 	
 }
-
+void mostrarDatos(){
+	
+	int i,indice;
+	float vecPromedio[TAM];
+	
+	for(i=0; i<TAM; i++){
+		
+		vecPromedio[i] = estudiante[i].promedio;
+	
+	}
+	
+	
+	indice = mejorPromedio(vecPromedio);
+	
+	printf("\nEl nombre del alumno es: %s", estudiante[indice].nombre);
+	printf("\nLa edad del alumno es: %i", estudiante[indice].edad);
+	printf("\nEl promedio del alumno es: %.2f", estudiante[indice].promedio);
+	
+}
 
