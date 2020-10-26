@@ -42,15 +42,29 @@ void pedirDatos(){
 		// Inicio acumulador para que se reinicie y asi acumular las notas
 		float acu = 0;
 		
-		printf("Ingrese nombre del alumno: ");
+		printf("Ingrese nombre del alumno N%i: ",(i+1));
 		gets(estudiante[i].nombre);
-		printf("Ingrese edad del alumno: ");
+		printf("Ingrese edad del alumno N%i: ",(i+1));
 		scanf("%i", &estudiante[i].edad);
+		//Valido la edad
+		while(estudiante[i].edad<6 || estudiante[i].edad>70){
+			
+			printf("Error! edad entre 6 y 70: ",(i+1));
+			scanf("%i", &estudiante[i].edad);
+			
+		}
 		
 		for(j=0; j<TAM; j++){
 			
 			printf("Ingrese nota %i: ", (j+1));
 			scanf("%f", &estudiante[i].nota.notas[j]);
+			//Valido las notas
+			while(estudiante[i].nota.notas[j] <1 || estudiante[i].nota.notas[j]>10){
+				
+				printf("Error! nota entre 1 y 10: ");
+				scanf("%f", &estudiante[i].nota.notas[j]);
+				
+			}
 			//Acumulo las notas
 			acu = acu + estudiante[i].nota.notas[j];
 			
