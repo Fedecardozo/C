@@ -6,6 +6,10 @@
 /*Hacer una estructura llamada alumno, la cuál tendrá los siguientes miembros: nombre, edad, promedio. 
 Pedir datos al usuario para 3 alumnos, comprobar cuál de los 3 tiene el mejor promedio y posteriormente imprimir los datos del alumno.*/
 
+// Prototypo
+
+int mejorPromedio(float x[]);
+
 struct notaEst{
 	
 	float notas[TAM];
@@ -23,10 +27,13 @@ struct alumno{
 
 int main(){
 	
-	int i;
-	int j;
+	int i,j,indice;
+	float vecPromedio[TAM];
 	
 	for(i=0; i<TAM; i++){
+		
+		// Inicio acumulador para que se reinicie y asi acumular las notas
+		float acu = 0;
 		
 		printf("Ingrese nombre del alumno: ");
 		gets(estudiante[i].nombre);
@@ -35,15 +42,55 @@ int main(){
 		
 		for(j=0; j<TAM; j++){
 			
-			printf("Ingrese nota %i: ", j);
+			printf("Ingrese nota %i: ", (j+1));
 			scanf("%f", &estudiante[i].nota.notas[j]);
+			//Acumulo las notas
+			acu = acu + estudiante[i].nota.notas[j];
 			
 		}
 		
 		fflush(stdin);
 		
-		//estudiante[i].promedio = (estudiante[i].nota.nota1 + estudiante[i].nota.nota2 + estudiante[i].nota.nota3)/TAM;
+		estudiante[i].promedio = acu/TAM;
+		vecPromedio[i] = estudiante[i].promedio;
+	
 	}
+	
+	
+	indice = mejorPromedio(vecPromedio);
+	
+	printf("El nombre del alumno es: %s", estudiante[indice].nombre);
+	printf("La edad del alumno es: %i", estudiante[indice].edad);
+	printf("El promedio del alumno es: %2.f", estudiante[indice].promedio);
+	
+}
+
+int mejorPromedio(float x[]){
+	
+	int i, mayor,indice;
+	
+	for(i=0; i<TAM; i++){
+			
+		
+		if(i==0){
+			
+			mayor = x[i];
+			indice = i;
+			
+		}else{
+			
+			if(x[i] > mayor){
+			
+				mayor = x[i];
+				indice = i;
+			
+			}
+			
+		}
+		
+	}
+	
+	return indice;
 	
 }
 
