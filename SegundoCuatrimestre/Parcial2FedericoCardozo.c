@@ -1,5 +1,8 @@
 
 # include<stdio.h>
+# include<stdlib.h>
+# include<string.h>
+# include<conio.h>
 # define TAM 3
 
 //1. Utilizando estructuras (registros), crear un programa que permita almacenar la siguiente información sobre carga de combustibles (ver ejemplo)
@@ -11,8 +14,19 @@
 
 /*3- Diseñe una función que reciba el número de surtidor y que devuelva el total de litros despachados de “Diesel Premium”*/
 
+//4- A través de una subrutina informar cuántas veces fue utilizado un determinado surtidor 
+// por un determinado playero (estos datos deben ser suministrados como parámetros)
+
 void dieselPremium(int surtidor, int litros);
+void menu();
+int cantidadPlayero(int x, char nombre[20]);
+
+// Variables globales para acumular el diesel premium
 int acuDiesel = 0,acuDiesel2 = 0, acuDiesel3 = 0, acuDiesel4 = 0;
+
+// Variables globales con numeros ficticioso para hacer el punto 4
+int cont1 = 15, cont2 = 10, cont3 = 23, cont4 = 8;
+
 
 struct combustible{
 	
@@ -26,8 +40,8 @@ struct combustible{
 
 int main(){
 	
-	int i,num;
-	cargaCombustible[0].carga = 0;
+	int i;
+
 	for(i=0; i<TAM; i++){
 		
 		printf("Ingrese nombre del playero N-%i: ",(i+1));
@@ -66,28 +80,14 @@ int main(){
 			
 		}
 		
-		cargaCombustible[0].carga++;
+		cargaCombustible[i].carga = i+1;
 		printf("\n          ***         \n\n");
 	}
-	printf("**************************************\n\n");
-	printf("Quiere saber la cantidad de cargas? \n Opcion 1-Si \n Opcion 2-No \nIngrese opcion: ");
-	scanf("%i", &num);
-	switch(num){
+	system("cls");
+	
+	menu();
 		
-		case 1: 
-				printf("\nIngrese surtidor: ");
-				scanf("%i", &num);
-				printf("\nEl surtidor %i tiene un total de Diesel Premium de %i Litros",num, dieselSurtidor(num));
-				break;
-		case 2: printf("Muchas gracias, Hasta luego!"); break;
-		default: printf("No existe esa opcion, Hasta luego!"); break;
-		
-	}
-		
-	
-	
-	
-	
+
 	return 0;
 }
 
@@ -115,6 +115,91 @@ int dieselSurtidor(int surtidor){
 		default: return 0; break;
 	}
 	
+	
+}
+int cantidadPlayero(int x, char nombre[20]){
+	
+	int i,flag=0;
+	char auxNombre [20];
+	strcpy(auxNombre,nombre);
+	strupr(auxNombre);
+	
+	for(i=0; i<TAM; i++){
+		
+		char auxString[20];
+		strcpy(auxString,cargaCombustible[i].playero);
+		strupr(auxString);
+		
+		if(strcmp(auxNombre,auxString) == 0){
+			
+			flag = 1;
+			i = TAM;
+			
+		}
+		
+	}
+	
+	if( flag == 1){
+		
+		switch(x){
+				
+			case 1: return cont1; break;
+			case 2: return cont2; break;
+			case 3: return cont3; break;
+			case 4: return cont4; break;
+			default: return 0; break;
+				
+		}
+	}else{
+		
+		return 0;
+		
+	}
+	
+}
+void menu(){
+	
+	int num;
+	char playero[20];
+	
+	printf("\t****** MENU ******" );
+	printf("\n 1) Quiere saber que suritdor cargo mas Diesel Premium?");
+	printf("\n 2) Quiere saber cuantas veces fue utilizado un surtidor y por que playero?");
+	printf("\n 3) Salir");
+	printf("\n Ingrese opcion: ");
+	scanf("%i", &num);
+	fflush(stdin);
+	
+	switch(num){
+		
+		case 1: 
+				printf("\n**** Eligio la opcion 1 ****");
+				printf("\nIngrese surtidor: ");
+				scanf("%i", &num);
+				printf("\nEl surtidor %i tiene un total de Diesel Premium de %i Litros",num, dieselSurtidor(num));
+				break;
+		case 2: 
+				printf("\n**** Eligio la opcion 2 ****");
+				printf("\nIngrese surtidor: ");
+				scanf("%i", &num);
+				fflush(stdin);
+				printf("Ingrese nombre del playero: ");
+				gets(playero);
+				int flag = cantidadPlayero(num,playero);
+				if(flag == 0){
+					
+					printf("\n Incorrecto surtidor o nombre del playero");
+					
+				}else{
+					
+					printf("\nEl surtidor %i utilizado por el playero: %s fue utilizado %i",num, playero,flag);
+					
+				}	
+				break;		
+		case 3: printf("Muchas gracias, Hasta luego!"); break;
+		default: printf("No existe esa opcion, Hasta luego!"); break;
+		
+	}
 	
 }
 
