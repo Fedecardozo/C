@@ -17,16 +17,14 @@
 //4- A través de una subrutina informar cuántas veces fue utilizado un determinado surtidor 
 // por un determinado playero (estos datos deben ser suministrados como parámetros)
 
+// 5- Generar un archivo de texto, llamado "Ventas.txt" que tenga la siguiente estructura:
+
 void dieselPremium(int surtidor, int litros);
 void menu();
 int cantidadPlayero(int x, char nombre[20]);
 
 // Variables globales para acumular el diesel premium
 int acuDiesel = 0,acuDiesel2 = 0, acuDiesel3 = 0, acuDiesel4 = 0;
-
-// Variables globales con numeros ficticioso para hacer el punto 4
-int cont1 = 15, cont2 = 10, cont3 = 23, cont4 = 8;
-
 
 struct combustible{
 	
@@ -118,6 +116,9 @@ int dieselSurtidor(int surtidor){
 	
 }
 int cantidadPlayero(int x, char nombre[20]){
+	
+	// Variables con numeros ficticioso para hacer el punto 4
+	int cont1 = 15, cont2 = 10, cont3 = 23, cont4 = 8;
 	
 	int i,flag=0;
 	char auxNombre [20];
