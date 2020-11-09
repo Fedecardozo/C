@@ -1,0 +1,6 @@
+Ventas del mes: Estación servicio YPF 
+
+Carga 	 Playero 	Surtidor 	Tipo Combustible 	Litros
+  1 	  fede		   2		 Nafta Premium		  2
+  2 	  fede2		   2		 Nafta Premium		  2
+  3 	  fede3		   3		    Diesel    		  3

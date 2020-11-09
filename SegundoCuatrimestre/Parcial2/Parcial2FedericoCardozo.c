@@ -22,6 +22,7 @@
 void dieselPremium(int surtidor, int litros);
 void menu();
 int cantidadPlayero(int x, char nombre[20]);
+void crearArchivo();
 
 // Variables globales para acumular el diesel premium
 int acuDiesel = 0,acuDiesel2 = 0, acuDiesel3 = 0, acuDiesel4 = 0;
@@ -39,6 +40,7 @@ struct combustible{
 int main(){
 	
 	int i;
+	
 
 	for(i=0; i<TAM; i++){
 		
@@ -57,7 +59,7 @@ int main(){
 			
 		}
 		
-		printf("Tipo de combustible: \n 1)Nafta\n 2)Nafta Premium\n 3)Diesel\n 4)Diesel Premium\nIngrese opcion: ");
+		printf("Tipo de combustible: \n 1)Nafta Super\n 2)Nafta Premium\n 3)Diesel\n 4)Diesel Premium\nIngrese opcion: ");
 		scanf("%i", &cargaCombustible[i].tipo);
 		
 		while(cargaCombustible[i].tipo<1 || cargaCombustible[i].tipo>4){
@@ -84,7 +86,42 @@ int main(){
 	system("cls");
 	
 	menu();
+	
+		FILE *texto;
+	
+	texto = fopen("Ventas.txt", "w");
+	
+	if(texto == NULL){
 		
+		printf("No se pudo crear el archivo!");
+		
+	}else{
+		
+		char tipoC[15];
+		/*printf("Ingrese numero de surtidor: ");
+		scanf("%i", &num);*/
+		fprintf(texto,"Ventas del mes: Estación servicio YPF \n\n");	
+		fprintf(texto,"Carga \t Playero \tSurtidor \tTipo Combustible \tLitros");
+		for(i=0; i<TAM; i++){
+			
+			fprintf(texto,"\n  %i \t  %s\t\t   %i",cargaCombustible[i].carga,cargaCombustible[i].playero,cargaCombustible[i].surtidor);
+			
+			switch(cargaCombustible[i].tipo){
+				
+				case 1: strcpy(tipoC,"Nafta Super"); break;
+				case 2: strcpy(tipoC,"Nafta Premium") ; break;
+				case 3: strcpy(tipoC,"   Diesel    "); break;
+				case 4: strcpy(tipoC,"Diesel Premium"); break;
+				default: strcpy(tipoC,"No existe"); break;
+				
+			}
+			
+			fprintf(texto,"\t\t %s\t\t  %i",tipoC,cargaCombustible[i].litros);
+		}
+			
+		
+	}
+	fclose(texto);	
 
 	return 0;
 }
@@ -118,7 +155,9 @@ int dieselSurtidor(int surtidor){
 int cantidadPlayero(int x, char nombre[20]){
 	
 	// Variables con numeros ficticioso para hacer el punto 4
-	int cont1 = 15, cont2 = 10, cont3 = 23, cont4 = 8;
+	int cont;
+	srand(time(NULL));
+	cont = rand()%22;
 	
 	int i,flag=0;
 	char auxNombre [20];
@@ -135,22 +174,23 @@ int cantidadPlayero(int x, char nombre[20]){
 			
 			flag = 1;
 			i = TAM;
-			
+	
 		}
 		
 	}
 	
 	if( flag == 1){
 		
-		switch(x){
-				
-			case 1: return cont1; break;
-			case 2: return cont2; break;
-			case 3: return cont3; break;
-			case 4: return cont4; break;
-			default: return 0; break;
-				
+		if(x>0 && x<5){
+			
+			return cont;
+			
+		}else{
+			
+			return 0;
+			
 		}
+
 	}else{
 		
 		return 0;
@@ -201,6 +241,27 @@ void menu(){
 		default: printf("No existe esa opcion, Hasta luego!"); break;
 		
 	}
+	
+}
+void crearArchivo(){
+	
+	FILE *texto;
+	
+	texto = fopen("Ventas.txt", "w");
+	
+	if(texto == NULL){
+		
+		printf("No se pudo crear el archivo!");
+		
+	}else{
+		
+		int num;
+		/*printf("Ingrese numero de surtidor: ");
+		scanf("%i", &num);*/
+		fprintf(texto,"Ventas del mes: Estación servicio YPF \nCarga");	
+		
+	}
+	fclose(texto);
 	
 }
 
