@@ -3,7 +3,7 @@
 # include<stdlib.h>
 # include<string.h>
 # include<conio.h>
-# define TAM 3
+# define TAM 2
 
 //1. Utilizando estructuras (registros), crear un programa que permita almacenar la siguiente información sobre carga de combustibles (ver ejemplo)
 /*2-Realice el ingreso de la información de 50 cargas de combustible.
@@ -40,7 +40,6 @@ struct combustible{
 int main(){
 	
 	int i;
-	
 
 	for(i=0; i<TAM; i++){
 		
@@ -87,42 +86,8 @@ int main(){
 	
 	menu();
 	
-		FILE *texto;
+	crearArchivo();
 	
-	texto = fopen("Ventas.txt", "w");
-	
-	if(texto == NULL){
-		
-		printf("No se pudo crear el archivo!");
-		
-	}else{
-		
-		char tipoC[15];
-		/*printf("Ingrese numero de surtidor: ");
-		scanf("%i", &num);*/
-		fprintf(texto,"Ventas del mes: Estación servicio YPF \n\n");	
-		fprintf(texto,"Carga \t Playero \tSurtidor \tTipo Combustible \tLitros");
-		for(i=0; i<TAM; i++){
-			
-			fprintf(texto,"\n  %i \t  %s\t\t   %i",cargaCombustible[i].carga,cargaCombustible[i].playero,cargaCombustible[i].surtidor);
-			
-			switch(cargaCombustible[i].tipo){
-				
-				case 1: strcpy(tipoC,"Nafta Super"); break;
-				case 2: strcpy(tipoC,"Nafta Premium") ; break;
-				case 3: strcpy(tipoC,"   Diesel    "); break;
-				case 4: strcpy(tipoC,"Diesel Premium"); break;
-				default: strcpy(tipoC,"No existe"); break;
-				
-			}
-			
-			fprintf(texto,"\t\t %s\t\t  %i",tipoC,cargaCombustible[i].litros);
-		}
-			
-		
-	}
-	fclose(texto);	
-
 	return 0;
 }
 
@@ -245,6 +210,8 @@ void menu(){
 }
 void crearArchivo(){
 	
+	int i;
+	
 	FILE *texto;
 	
 	texto = fopen("Ventas.txt", "w");
@@ -255,13 +222,31 @@ void crearArchivo(){
 		
 	}else{
 		
-		int num;
+		char tipoC[15];
 		/*printf("Ingrese numero de surtidor: ");
 		scanf("%i", &num);*/
-		fprintf(texto,"Ventas del mes: Estación servicio YPF \nCarga");	
+		fprintf(texto,"Ventas del mes: Estación servicio YPF \n\n");	
+		fprintf(texto,"Carga \t Playero \tSurtidor \tTipo Combustible \tLitros");
+		for(i=0; i<TAM; i++){
+			
+			fprintf(texto,"\n  %i \t  %s\t\t   %i",cargaCombustible[i].carga,cargaCombustible[i].playero,cargaCombustible[i].surtidor);
+			
+			switch(cargaCombustible[i].tipo){
+				
+				case 1: strcpy(tipoC,"Nafta Super"); break;
+				case 2: strcpy(tipoC,"Nafta Premium") ; break;
+				case 3: strcpy(tipoC,"   Diesel    "); break;
+				case 4: strcpy(tipoC,"Diesel Premium"); break;
+				default: strcpy(tipoC,"No existe"); break;
+				
+			}
+			
+			fprintf(texto,"\t\t %s\t\t  %i",tipoC,cargaCombustible[i].litros);
+		}
+			
 		
 	}
-	fclose(texto);
+	fclose(texto);	
 	
 }
 
